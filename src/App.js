@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar';
+import MovieList from './components/MovieList/MovieList';
+import Wishlist from './components/WishList/Wishlist';
 import './App.css';
 
 function App() {
+  const [wishlist, setWishlist] = useState([]);
+
+  const handleFavoriteToggle = (movie) => {
+    if (wishlist.find(m => m.id === movie.id)) {
+      setWishlist(wishlist.filter(m => m.id !== movie.id));
+    } else {
+      setWishlist([...wishlist, movie]);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <div className="container mt-5">
+        <Routes>
+          <Route path="/" element={<MovieList onFavoriteToggle={handleFavoriteToggle} />} />
+          <Route path="/wishlist" element={<Wishlist wishlist={wishlist} />} />
+        </Routes>
+      </div>
     </div>
   );
 }
