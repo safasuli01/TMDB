@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import MovieList from './components/MovieList/MovieList';
 import Wishlist from './components/WishList/Wishlist';
+import LoginPage from './Pages/Login/LoginPage'; 
 import './App.css';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
             path="/wishlist" 
             element={<Wishlist wishlist={wishlist} onFavoriteToggle={handleFavoriteToggle} />} 
           />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
     </div>
