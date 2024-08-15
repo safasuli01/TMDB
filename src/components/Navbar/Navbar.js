@@ -5,7 +5,7 @@ import { faHeart, faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css';
 
-function Navbar() {
+function Navbar({wishlistCount}) {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
@@ -24,7 +24,14 @@ function Navbar() {
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <Link className="nav-link" to="/wishlist">
+<<<<<<< HEAD
                   <FontAwesomeIcon icon={faHeart} className="text-danger " /> 
+=======
+                  <FontAwesomeIcon icon={faHeart} className="text-danger" /> 
+                  {wishlistCount > 0 && <span className='badge bg-danger ms-2'>
+                    {wishlistCount}
+                    </span>}
+>>>>>>> 3d14d283ea2cb18928ca3e5fd42346af9e870756
                 </Link>
               </li>
               <li className="nav-item">

@@ -5,6 +5,7 @@ import './MovieList.css';
 
 function MovieList({ onFavoriteToggle }) {
   const [movies, setMovies] = useState([]);
+<<<<<<< HEAD
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -57,6 +58,19 @@ function MovieList({ onFavoriteToggle }) {
 
     return pageNumbers;
   };
+=======
+  //sa
+  const [wishlist, setWishlist] = useState ([])
+
+  useEffect(() => {
+    // Fetch movies from an API (e.g., The Movie Database)
+    fetch('https://api.themoviedb.org/3/movie/popular?api_key=777af543ac5ace392fe7fe1ff9e8a60d')
+      .then(response => response.json())
+      .then(data => setMovies(data.results));
+  }, []);
+  //sa
+  const isMovieFavorited = (movieId) => wishlist.some(m => m.id === movieId);
+>>>>>>> 3d14d283ea2cb18928ca3e5fd42346af9e870756
 
   return (
     <div className="container mt-5">
@@ -65,7 +79,10 @@ function MovieList({ onFavoriteToggle }) {
           <MovieCard 
             key={movie.id} 
             movie={movie} 
-            onFavoriteToggle={onFavoriteToggle} 
+            onFavoriteToggle={onFavoriteToggle}
+            //sa
+            isFavorited={isMovieFavorited(movie.id)}
+             
           />
         ))}
       </div>

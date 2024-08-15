@@ -1,0 +1,66 @@
+.movie-card {
+    display: flex;
+    border-radius: 15px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .poster img {
+    border-radius: 15px;
+    max-width: 300px;
+  }
+  
+  .details {
+    margin-left: 20px;
+    flex: 1;
+  }
+  
+  .details h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #666;
+  }
+  
+  .details p {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .genres {
+    margin-top: 10px;
+  }
+  
+  .genre-tag {
+    background-color: #f0c14b;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  .extra-details p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .marvel-logo {
+    margin-top: 20px;
+    max-width: 150px;
+  }
+  
+  .website-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f0c14b;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .website-btn:hover {
+    background-color: #d9a02c;
+  }
+  

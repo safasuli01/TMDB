@@ -1,0 +1,43 @@
+.recommendation-card {
+    position: relative;
+    border: none;
+  }
+  
+  .card-img-top {
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .vote-average {
+    position: absolute;
+    bottom: -10px;
+    left: 15px;
+    transform: translateY(50%);
+  }
+  
+  .vote-average .badge {
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 50%;
+    background-color: #2f4f4f;
+    color: white;
+  }
+  
+  .card-body {
+    padding: 1rem 0.5rem;
+  }
+  
+  .card-title {
+    font-size: 1rem;
+    font-weight: bold;  
+    margin-bottom: 0;
+  }
+  
+  .more-options {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #6c757d;
+  }
+  
