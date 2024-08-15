@@ -4,6 +4,8 @@ import './MovieList.css';
 
 function MovieList({ onFavoriteToggle }) {
   const [movies, setMovies] = useState([]);
+  //sa
+  const [wishlist, setWishlist] = useState ([])
 
   useEffect(() => {
     // Fetch movies from an API (e.g., The Movie Database)
@@ -11,6 +13,8 @@ function MovieList({ onFavoriteToggle }) {
       .then(response => response.json())
       .then(data => setMovies(data.results));
   }, []);
+  //sa
+  const isMovieFavorited = (movieId) => wishlist.some(m => m.id === movieId);
 
   return (
     <div className="container mt-5">
@@ -19,7 +23,10 @@ function MovieList({ onFavoriteToggle }) {
           <MovieCard 
             key={movie.id} 
             movie={movie} 
-            onFavoriteToggle={onFavoriteToggle} 
+            onFavoriteToggle={onFavoriteToggle}
+            //sa
+            isFavorited={isMovieFavorited(movie.id)}
+             
           />
         ))}
       </div>

@@ -15,6 +15,7 @@ function Wishlist({ wishlist, onFavoriteToggle }) {
               key={movie.id}
               movie={movie}
               onFavoriteToggle={onFavoriteToggle}
+              isFavorited={true}
             />
           ))
         )}
