@@ -9,9 +9,10 @@ function MovieCard({ movie, onFavoriteToggle }) {
   const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
-    // Check if the movie is already in the wishlist (e.g., from localStorage or state)
-    // and update `isFavorited` accordingly.
-  }, []);
+    const storedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const isMovieInWishlist = storedWishlist.some(m => m.id === movie.id);
+    setIsFavorited(isMovieInWishlist);
+  }, [movie.id]);
 
   const handleFavoriteClick = () => {
     setIsFavorited(!isFavorited);

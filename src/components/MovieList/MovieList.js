@@ -1,23 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MovieCard from '../MovieCard/MovieCard';
 import './MovieList.css';
 
 function MovieList({ onFavoriteToggle }) {
   const [movies, setMovies] = useState([]);
-<<<<<<< HEAD
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    fetchMovies(currentPage);
-  }, [currentPage]);
+    fetchMovies(currentPage, searchTerm);
+  }, [currentPage, searchTerm]);
 
-  const fetchMovies = (page) => {
-    axios.get('https://api.themoviedb.org/3/movie/popular', {
+  const fetchMovies = (page, query) => {
+    const endpoint = query ? 'https://api.themoviedb.org/3/search/movie' : 'https://api.themoviedb.org/3/movie/popular';
+    
+    axios.get(endpoint, {
       params: {
         api_key: '777af543ac5ace392fe7fe1ff9e8a60d',
         page: page,
+        query: query,  // If there's a search term, include it in the API request
       }
     })
     .then(response => {
@@ -33,6 +36,11 @@ function MovieList({ onFavoriteToggle }) {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+    setCurrentPage(1);  // Reset to the first page on new search
   };
 
   const renderPageNumbers = () => {
@@ -58,37 +66,29 @@ function MovieList({ onFavoriteToggle }) {
 
     return pageNumbers;
   };
-=======
-  //sa
-  const [wishlist, setWishlist] = useState ([])
-
-  useEffect(() => {
-    // Fetch movies from an API (e.g., The Movie Database)
-    fetch('https://api.themoviedb.org/3/movie/popular?api_key=777af543ac5ace392fe7fe1ff9e8a60d')
-      .then(response => response.json())
-      .then(data => setMovies(data.results));
-  }, []);
-  //sa
-  const isMovieFavorited = (movieId) => wishlist.some(m => m.id === movieId);
->>>>>>> 3d14d283ea2cb18928ca3e5fd42346af9e870756
 
   return (
     <div className="container mt-5">
+      <div className="search-bar mb-4">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search for movies..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </div>
       <div className="row">
         {movies.map(movie => (
           <MovieCard 
             key={movie.id} 
             movie={movie} 
-            onFavoriteToggle={onFavoriteToggle}
-            //sa
-            isFavorited={isMovieFavorited(movie.id)}
-             
+            onFavoriteToggle={onFavoriteToggle} 
           />
         ))}
       </div>
-      <div className='pagi d-flex justify-content-center'>
-
-      <div className="pagination-container w-25 m-4">
+      <div className='d-flex justify-content-center m-4'> 
+         <div className="pagination-container">
         <button 
           className={`page-arrow ${currentPage === 1 ? 'disabled' : ''}`} 
           onClick={() => handlePageClick(currentPage - 1)} 
@@ -104,10 +104,9 @@ function MovieList({ onFavoriteToggle }) {
         >
           &gt;
         </button>
-      </div>  
       </div>
-      
-
+      </div>
+    
     </div>
   );
 }

@@ -8,7 +8,8 @@ const MovieDetails = ({ collectionId }) => {
 
   useEffect(() => {
     // Replace 'YOUR_API_KEY' with your actual TMDb API key
-    const API_KEY = 'YOUR_API_KEY';
+    const API_KEY = '777af543ac5ace392fe7fe1ff9e8a60d';
+
     const fetchCollection = async () => {
       try {
         const response = await axios.get(`https://api.themoviedb.org/3/collection/${collectionId}?api_key=${API_KEY}`);

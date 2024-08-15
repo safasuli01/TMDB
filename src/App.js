@@ -7,14 +7,16 @@ import './App.css';
 
 function App() {
   const [wishlist, setWishlist] = useState(() => {
-    //localStorage
-    const savedWashList = localStorage.getItem('washlist');
-    return savedWashList ? JSON.parse(savedWashList) : []})
+    const savedWishlist = localStorage.getItem('wishlist');
+    return savedWishlist ? JSON.parse(savedWishlist) : [];
+  });
 
-    useEffect(() =>{
-      localStorage.setItem('washlist', JSON.stringify(wishlist));
-    }, [wishlist])
-    
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  }, [wishlist]);
+
   const handleFavoriteToggle = (movie) => {
     if (wishlist.find(m => m.id === movie.id)) {
       setWishlist(wishlist.filter(m => m.id !== movie.id));
@@ -22,16 +24,20 @@ function App() {
       setWishlist([...wishlist, movie]);
     }
   };
-  
-  
 
   return (
     <div className="App">
-      <Navbar wishlistCount={wishlist.length} />
+      <Navbar wishlistCount={wishlist.length} onSearch={setSearchQuery} />
       <div className="container mt-5">
         <Routes>
-          <Route path="/" element={<MovieList onFavoriteToggle={handleFavoriteToggle} />} />
-          <Route path="/wishlist" element={<Wishlist wishlist={wishlist} onFavoriteToggle={handleFavoriteToggle} />} />
+          <Route 
+            path="/" 
+            element={<MovieList onFavoriteToggle={handleFavoriteToggle} searchQuery={searchQuery} />} 
+          />
+          <Route 
+            path="/wishlist" 
+            element={<Wishlist wishlist={wishlist} onFavoriteToggle={handleFavoriteToggle} />} 
+          />
         </Routes>
       </div>
     </div>
