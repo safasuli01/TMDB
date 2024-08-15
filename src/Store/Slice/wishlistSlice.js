@@ -1,20 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import wishlistReducer from './Slices/wishlistSlice';
 
-const wishlistSlice = createSlice({
-  name: 'wishlist',
-  initialState: [],
-  reducers: {
-    toggleFavorite: (state, action) => {
-      const movie = action.payload;
-      const exists = state.find(m => m.id === movie.id);
-      if (exists) {
-        return state.filter(m => m.id !== movie.id);
-      } else {
-        return [...state, movie];
-      }
-    },
+const store = configureStore({
+  reducer: {
+    wishlist: wishlistReducer,
   },
 });
 
-export const { toggleFavorite } = wishlistSlice.actions;
-export default wishlistSlice.reducer;
+export default store;
