@@ -18,11 +18,11 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar wishlistCount={wishlist.length} />
       <div className="container mt-5">
         <Routes>
           <Route path="/" element={<MovieList onFavoriteToggle={handleFavoriteToggle} />} />
-          <Route path="/wishlist" element={<Wishlist wishlist={wishlist} />} />
+          <Route path="/wishlist" element={<Wishlist wishlist={wishlist} onFavoriteToggle={handleFavoriteToggle}/>} />
         </Routes>
       </div>
     </div>
