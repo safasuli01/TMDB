@@ -4,9 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css';
-import Wishlist from '../WishList/Wishlist';
 
-function Navbar() {
+function Navbar({wishlistCount}) {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
@@ -29,8 +28,8 @@ function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/wishlist">
                   <FontAwesomeIcon icon={faHeart} className="text-danger" /> 
-                  {WishlistCount > 0 && <span className='badfge bg-danger ms-2'>
-                    {WishlistCount}
+                  {wishlistCount > 0 && <span className='badge bg-danger ms-2'>
+                    {wishlistCount}
                     </span>}
                 </Link>
               </li>
