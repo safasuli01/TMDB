@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import MovieList from './components/MovieList/MovieList';
 import Wishlist from './components/WishList/Wishlist';
-import LoginPage from './Pages/Login/LoginPage'; 
+import LoginPage from './Pages/Login/LoginPage';
+import MovieDetails from './components/MovieDetails/MovieDetails'; // Import the MovieDetails component
 import './App.css';
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
             element={<Wishlist wishlist={wishlist} onFavoriteToggle={handleFavoriteToggle} />} 
           />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/collection/:collectionId" element={<MovieDetails />} /> {/* Add this route */}
         </Routes>
       </div>
     </div>

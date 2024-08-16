@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import './MovieDetails.css';
 
-const MovieDetails = ({ collectionId }) => {
+const MovieDetails = () => {
+  const { collectionId } = useParams(); // Get the collectionId from the URL
   const [collection, setCollection] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Replace 'YOUR_API_KEY' with your actual TMDb API key
     const API_KEY = '777af543ac5ace392fe7fe1ff9e8a60d';
 
     const fetchCollection = async () => {
@@ -39,7 +40,6 @@ const MovieDetails = ({ collectionId }) => {
         <h2>{collection.name}</h2>
         <p>{collection.overview}</p>
         <div className="genres">
-          {/* Display genres or relevant information */}
           {collection.parts.map(part => (
             <span key={part.id} className="genre-tag">{part.title}</span>
           ))}

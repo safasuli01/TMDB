@@ -4,9 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import "./MovieCard.css";
+import { useNavigate } from 'react-router-dom';
 
 function MovieCard({ movie, onFavoriteToggle }) {
   const [isFavorited, setIsFavorited] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
@@ -19,17 +21,21 @@ function MovieCard({ movie, onFavoriteToggle }) {
     onFavoriteToggle(movie);
   };
 
+  const handleClick = () => {
+    navigate(`/collection/${movie.id}`); // Navigate to the collection details page using movie ID
+  };
+
   const imageUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     : "path_to_default_image.png";
 
   const percentage = Math.round(movie.vote_average * 10);
-  const radius = 20;  // Adjusted for a smaller size
+  const radius = 20;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (percentage / 100) * circumference;
 
   return (
-    <div className="col-sm-6 col-md-4 col-lg-3 mb-4">
+    <div className="col-sm-6 col-md-4 col-lg-3 mb-4" onClick={handleClick}>
       <div className="card h-100 shadow-sm">
         <img
           src={imageUrl}
@@ -67,7 +73,10 @@ function MovieCard({ movie, onFavoriteToggle }) {
             </div>
             <button
               className="btn btn-link p-0"
-              onClick={handleFavoriteClick}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent the click event from propagating to the parent element
+                handleFavoriteClick();
+              }}
               aria-label={isFavorited ? "Unfavorite" : "Favorite"}
             >
               <FontAwesomeIcon
