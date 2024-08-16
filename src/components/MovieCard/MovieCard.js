@@ -21,8 +21,9 @@ function MovieCard({ movie, onFavoriteToggle }) {
     onFavoriteToggle(movie);
   };
 
+  // This is the handleClick function for navigating to the movie details page
   const handleClick = () => {
-    navigate(`/collection/${movie.id}`); // Navigate to the collection details page using movie ID
+    navigate(`/collection/${movie.id}`); // This should match the route defined in App.js
   };
 
   const imageUrl = movie.poster_path

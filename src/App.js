@@ -41,7 +41,7 @@ function App() {
             element={<Wishlist wishlist={wishlist} onFavoriteToggle={handleFavoriteToggle} />} 
           />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/collection/:collectionId" element={<MovieDetails />} /> {/* Add this route */}
+          <Route path="/collection/:movieId" element={<MovieDetails />} />
         </Routes>
       </div>
     </div>
