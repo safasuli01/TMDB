@@ -23,7 +23,7 @@ function MovieCard({ movie, onFavoriteToggle }) {
 
   // This is the handleClick function for navigating to the movie details page
   const handleClick = () => {
-    navigate(`/collection/${movie.id}`); // This should match the route defined in App.js
+    navigate(`/collection/${movie.id}`);
   };
 
   const imageUrl = movie.poster_path
@@ -75,7 +75,7 @@ function MovieCard({ movie, onFavoriteToggle }) {
             <button
               className="btn btn-link p-0"
               onClick={(e) => {
-                e.stopPropagation(); // Prevent the click event from propagating to the parent element
+                e.stopPropagation();
                 handleFavoriteClick();
               }}
               aria-label={isFavorited ? "Unfavorite" : "Favorite"}

@@ -4,7 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import MovieList from './components/MovieList/MovieList';
 import Wishlist from './components/WishList/Wishlist';
 import LoginPage from './Pages/Login/LoginPage';
-import MovieDetails from './components/MovieDetails/MovieDetails'; // Import the MovieDetails component
+import MovieDetails from './components/MovieDetails/MovieDetails';
 import './App.css';
 
 function App() {

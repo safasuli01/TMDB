@@ -1,66 +1,98 @@
-.movie-card {
-    display: flex;
-    border-radius: 15px;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .poster img {
-    border-radius: 15px;
-    max-width: 300px;
-  }
-  
-  .details {
-    margin-left: 20px;
-    flex: 1;
-  }
-  
-  .details h2 {
-    margin: 0;
-    font-size: 18px;
-    color: #666;
-  }
-  
-  .details p {
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .genres {
-    margin-top: 10px;
-  }
-  
-  .genre-tag {
-    background-color: #f0c14b;
-    padding: 5px 10px;
-    border-radius: 15px;
-    margin-right: 10px;
-    font-size: 14px;
-  }
-  
-  .extra-details p {
-    margin: 10px 0;
-    font-size: 14px;
-    color: #666;
-  }
-  
-  .marvel-logo {
-    margin-top: 20px;
-    max-width: 150px;
-  }
-  
-  .website-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #f0c14b;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .website-btn:hover {
-    background-color: #d9a02c;
-  }
-  
+/* .container {
+  background-color: white; 
+} */
+
+.movie-details-container {
+  display: flex;
+  align-items: center;
+
+  background-color: white;
+  border-radius: 10px;
+}
+
+.movie-poster img {
+  width: 412px;
+  height: 618px;
+  border-radius: 10px;
+
+}
+
+.movie-info {
+  margin-left: 20px;
+  max-width: 600px;
+}
+
+
+.movie-info p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+
+.studio-logo {
+  width: 120px;
+  margin-top: 20px;
+}
+
+.website-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: white;
+  color: #FFE353;
+  border: 2px solid #FFE353;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.website-button:hover {
+  background-color: #FFE353;
+  color: white;
+}
+
+
+.movie-meta span {
+  font-size: 14px;
+  margin: 0;
+  white-space: nowrap;
+}
+.movie-meta {
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+  margin-bottom: 10px; /* Add some space below the metadata section */
+}
+
+
+.movie-tags {
+  display: flex;
+  flex-wrap: wrap; /* Allows tags to wrap to the next line */
+  gap: 10px; /* Adds space between each tag */
+  margin-top: 0; /* Removes margin on top */
+  margin-bottom: 20px; /* Adds space at the bottom */
+}
+
+.movie-tags .tag {
+  display: inline-block;
+  background-color: #FFE353;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.recommendations {
+  margin-top: 40px;
+}
+
+.recommendations-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
