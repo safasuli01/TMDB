@@ -5,6 +5,7 @@ import MovieList from './components/MovieList/MovieList';
 import Wishlist from './components/WishList/Wishlist';
 import LoginPage from './Pages/Login/LoginPage';
 import MovieDetails from './components/MovieDetails/MovieDetails';
+import { LanguageProvider } from './context/languageContext';
 import './App.css';
 
 function App() {
@@ -28,23 +29,25 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Navbar wishlistCount={wishlist.length} onSearch={setSearchQuery} />
-      <div className="container mt-5">
-        <Routes>
-          <Route 
-            path="/" 
-            element={<MovieList onFavoriteToggle={handleFavoriteToggle} searchQuery={searchQuery} />} 
-          />
-          <Route 
-            path="/wishlist" 
-            element={<Wishlist wishlist={wishlist} onFavoriteToggle={handleFavoriteToggle} />} 
-          />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/collection/:movieId" element={<MovieDetails />} />
-        </Routes>
+    <LanguageProvider>
+      <div className="App">
+        <Navbar wishlistCount={wishlist.length} onSearch={setSearchQuery} />
+        <div className="container mt-5">
+          <Routes>
+            <Route 
+              path="/" 
+              element={<MovieList onFavoriteToggle={handleFavoriteToggle} searchQuery={searchQuery} />} 
+            />
+            <Route 
+              path="/wishlist" 
+              element={<Wishlist wishlist={wishlist} onFavoriteToggle={handleFavoriteToggle} />} 
+            />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/collection/:movieId" element={<MovieDetails />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </LanguageProvider>
   );
 }
 
