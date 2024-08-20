@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import MovieCard from '../MovieCard/MovieCard';
 import './MovieList.css';
+import LanguageContext from '../../context/languageContext';
 
 function MovieList({ onFavoriteToggle }) {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
+  const {lang} = useContext (LanguageContext)
 
-  useEffect(() => {
-    fetchMovies(currentPage, searchTerm);
-  }, [currentPage, searchTerm]);
-
-  const fetchMovies = (page, query) => {
+  const fetchMovies = (page, query) => {  
+  
     const endpoint = query ? 'https://api.themoviedb.org/3/search/movie' : 'https://api.themoviedb.org/3/movie/popular';
     
     axios.get(endpoint, {
@@ -21,6 +21,7 @@ function MovieList({ onFavoriteToggle }) {
         api_key: '777af543ac5ace392fe7fe1ff9e8a60d',
         page: page,
         query: query,  // If there's a search term, include it in the API request
+        language: `${lang === 'en' ? 'en-us' : 'ar'}`
       }
     })
     .then(response => {
@@ -31,6 +32,11 @@ function MovieList({ onFavoriteToggle }) {
       console.error('Error fetching movies:', error);
     });
   };
+
+  useEffect(() => {
+    fetchMovies(currentPage, searchTerm);
+  }, [currentPage, fetchMovies, searchTerm]);
+
 
   const handlePageClick = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -66,7 +72,8 @@ function MovieList({ onFavoriteToggle }) {
 
     return pageNumbers;
   };
-
+  
+  if (!movies) return <div>Loading...</div>
   return (
     <div className="container mt-5">
       <div className="search-bar mb-4">

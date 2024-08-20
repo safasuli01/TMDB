@@ -8,7 +8,7 @@ import './Navbar.css';
 
 function Navbar({ wishlistCount, onSearch }) {
   const [query, setQuery] = useState('');
-  const {lang, toggleLanguage, direction} = useContext (LanguageContext)
+  const {lang, toggleLanguage} = useContext (LanguageContext)
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
@@ -19,7 +19,7 @@ function Navbar({ wishlistCount, onSearch }) {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          <i className="fa-solid fa-film"></i> MOVIES
+        <i className="fa-solid fa-film"></i> {lang === 'en' ? 'Movies' : 'الأفلام'}
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
