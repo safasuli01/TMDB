@@ -2,8 +2,7 @@
   "name": "movie-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Helana-99.github.io/movie-app",
-
+  "homepage": "https://safasuli01.github.io/TMDB",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
