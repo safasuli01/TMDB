@@ -1,38 +1,43 @@
-import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const LanguageContext = createContext();
 
+export const useLanguage = () => useContext(LanguageContext);
+
 export const LanguageProvider = ({ children }) => {
-    const [languages, setLanguages] = useState([]);
-    const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [language, setLanguage] = useState('en');
+  const [supportedLanguages, setSupportedLanguages] = useState([]);
 
-    useEffect(() => {
-        const fetchLanguages = async () => {
-            try {
-                const response = await axios.get(
-                    'https://api.themoviedb.org/3/configuration/languages',
-                    {
-                        params: { api_key: process.env.REACT_APP_TMDB_API_KEY },
-                    }
-                );
-                setLanguages(response.data);
-            } catch (error) {
-                console.error('Failed to fetch languages:', error);
-            }
-        };
-        fetchLanguages();
-    }, []);
-
-    const changeLanguage = (langCode) => {
-        setSelectedLanguage(langCode);
+  useEffect(() => {
+    const fetchLanguages = async () => {
+      try {
+        const apiKey = process.env.REACT_APP_TMDB_API_KEY;
+        const response = await fetch(`https://api.themoviedb.org/3/configuration/languages?api_key=${apiKey}`);
+        const data = await response.json();
+        setSupportedLanguages(data);
+      } catch (error) {
+        console.error('Error fetching languages:', error);
+      }
     };
 
-    return (
-        <LanguageContext.Provider value={{ languages, selectedLanguage, changeLanguage }}>
-            {children}
-        </LanguageContext.Provider>
-    );
-};
+    fetchLanguages();
+  }, []);
 
-export default LanguageContext;
+  useEffect(() => {
+    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+  }, [language]);
+
+  const switchLanguage = (lang) => {
+    if (supportedLanguages.some((l) => l.iso_639_1 === lang)) {
+      setLanguage(lang);
+    } else {
+      console.error('Language not supported');
+    }
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, switchLanguage }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
