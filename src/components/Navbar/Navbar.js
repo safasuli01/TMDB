@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faEarthAfrica, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LanguageContext from '../../context/languageContext';
 import './Navbar.css';
 
 function Navbar({ wishlistCount, onSearch }) {
   const [query, setQuery] = useState('');
+  const {lang, toggleLanguage, direction} = useContext (LanguageContext)
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
@@ -23,7 +25,7 @@ function Navbar({ wishlistCount, onSearch }) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
-          <form className="d-flex w-50 justify-content-center">
+          <form className="d-flex w-50 justify-content-center" value={query} onChange={handleInputChange}>
 
           </form>
           <ul className="navbar-nav ms-auto">
@@ -37,6 +39,12 @@ function Navbar({ wishlistCount, onSearch }) {
               <Link className="nav-link" to="/login">
                 <FontAwesomeIcon icon={faUser} /> Login
               </Link>
+            </li>
+            <li className='nav-item' onClick={toggleLanguage} style={{cursor : 'pointer'}}>
+              <span className='nav-link'>
+                <FontAwesomeIcon icon={faEarthAfrica}/>
+                {lang === 'en' ? 'English' : 'عربي'}
+              </span>
             </li>
           </ul>
         </div>
